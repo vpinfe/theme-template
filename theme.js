@@ -24,6 +24,9 @@ async function start() {
     if (action === "select") vpin.launchTable(vpin.getCurrentTableIndex());
   });
 
+  // The English here shows when no locales file has the key.
+  listEl.setAttribute("aria-label", vpin.t("theme.tables", "Tables"));
+
   draw({ reason: "enter" });
   document.body.dataset.ready = "true";
 }

@@ -26,6 +26,7 @@ options.json          the options a person can change, with their defaults
 index_playfield.html  the playfield page
 style.css             the look
 theme.js              the behavior
+locales/en.json       the theme's own words; add <language>.json to translate them
 preview.png           shown in the theme list
 ```
 
@@ -68,6 +69,20 @@ Every field of each type is in the theme reference, under Configuration Schema.
    list changes.
 
 A step slides the rows and a page jump cuts. That is the only motion the theme decides.
+
+## Translating
+
+A word a person reads goes through `vpin.t(key, english)`, and the theme's own words live in
+`locales/`. Template has one, the label on the list, in `locales/en.json`:
+
+```json
+{ "tables": "Tables" }
+```
+
+`vpin.t("theme.tables", "Tables")` reads it. To translate Template, add a `locales/de.json`
+beside it with the same keys. A language or a key the theme does not have falls back to
+`en.json`, then to the English written in the call. Core's own words, such as
+`frontend.theme.no_tables_found`, are translated by core and cannot be changed from here.
 
 ## What core does, so this theme does not
 
