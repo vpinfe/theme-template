@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VPinFE - Template</title>
+  <!-- Core's stylesheet comes first so style.css can restyle what it provides:
+       the layout classes, the loading indicator and the hold ring. -->
+  <link rel="stylesheet" href="/core/common/vpinfe-style.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="/core/common/vpinfe-core.js"></script>
+</head>
+<body>
+  <!-- .vpinfe-upright turns the whole page to face the player when the cabinet
+       mounts the playfield screen sideways. Leave it on the outermost element. -->
+  <main class="stage vpinfe-upright">
+
+    <!-- The table's own art. Core fills this with the selected table's playfield
+         video, or its picture when there is no video, and swaps it as the selection
+         moves. Take the attribute off to draw the art yourself. -->
+    <div id="art" data-vpin-media="playfield"></div>
+
+    <!-- The list. theme.js draws the rows. -->
+    <ol id="list" aria-label="Tables"></ol>
+
+    <!-- The selection. theme.js fills these in. -->
+    <section id="selection">
+      <img id="wheel" alt="" />
+      <h1 id="name"></h1>
+      <p id="details"></p>
+    </section>
+
+    <!-- Shown when the list is empty. Core says why while it waits on a folder. -->
+    <p id="empty" hidden></p>
+  </main>
+
+  <!-- Core mounts its dialogs here: the menu, the collection picker and confirms. -->
+  <div id="overlay-root"></div>
+
+  <script src="theme.js"></script>
+</body>
+</html>

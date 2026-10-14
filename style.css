@@ -1,34 +1,156 @@
+/* Template - plain CSS, no framework. Every size is in vmin so the page holds its shape
+   on a wide desktop screen and on a cabinet's tall one. */
+
+:root {
+  --text: #f4f4f4;
+  --dim: rgba(244, 244, 244, 0.55);
+  --accent: #ffb000;
+  --shade: rgba(0, 0, 0, 0.62);
+}
+
 html,
 body {
   margin: 0;
-  padding: 0;
   height: 100%;
-  background-color: black;
-  color: white;
+  background: #000;
+  color: var(--text);
+  font-family: system-ui, sans-serif;
   overflow: hidden;
 }
 
-#rootContainer {
+/* The stage fills the screen. It is styled by class, not by id: an id would outrank the
+   rules in vpinfe-style.css that give .vpinfe-upright its position and size, and the page
+   would stop turning on a sideways cabinet screen. */
+.stage {
   position: relative;
   width: 100%;
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
-/* Fade overlay for screen transitions (table launch/return) */
-#fadeOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* --- The table's art, filled by core ----------------------------------------------- */
+
+#art {
+  position: absolute;
+  inset: 0;
+}
+
+#art > img,
+#art > video {
   width: 100%;
   height: 100%;
-  background: black;
-  opacity: 0;
-  transition: opacity 0.8s ease-in-out;
-  pointer-events: none;
-  z-index: 9998;
+  object-fit: cover;
 }
 
-#fadeOverlay.show {
-  opacity: 1;
+/* Darkens the art under the text so the list reads on any table. */
+#art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--shade), transparent 70%);
+}
+
+/* --- The list ---------------------------------------------------------------------- */
+
+#list {
+  position: absolute;
+  left: 4vmin;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 42vmin;
+}
+
+#list li {
+  padding: 1.6vmin 2vmin;
+  font-size: 3vmin;
+  color: var(--dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-left: 0.6vmin solid transparent;
+}
+
+#list li[aria-current] {
+  color: var(--text);
+  font-size: 3.6vmin;
+  border-left-color: var(--accent);
+  background: var(--shade);
+}
+
+/* One press slides the rows a step the way the wheel moved; a page jump leaves them
+   where they are. */
+#list[data-motion="slide"][data-direction="next"] li {
+  animation: from-below 160ms ease-out;
+}
+
+#list[data-motion="slide"][data-direction="previous"] li {
+  animation: from-above 160ms ease-out;
+}
+
+@keyframes from-below {
+  from { transform: translateY(100%); }
+}
+
+@keyframes from-above {
+  from { transform: translateY(-100%); }
+}
+
+/* --- The selection ----------------------------------------------------------------- */
+
+#selection {
+  position: absolute;
+  right: 5vmin;
+  bottom: 5vmin;
+  width: 46vmin;
+  text-align: right;
+}
+
+#wheel {
+  max-width: 100%;
+  max-height: 26vmin;
+  object-fit: contain;
+  filter: drop-shadow(0 0 1.5vmin rgba(0, 0, 0, 0.8));
+}
+
+#name {
+  margin: 1vmin 0 0;
+  font-size: 4.4vmin;
+  font-weight: 600;
+  text-shadow: 0 0 1.5vmin rgba(0, 0, 0, 0.9);
+  /* A very long name stops at three lines instead of covering the art. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+#details {
+  margin: 1vmin 0 0;
+  font-size: 2.4vmin;
+  color: var(--dim);
+  text-shadow: 0 0 1.5vmin rgba(0, 0, 0, 0.9);
+}
+
+#empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 4vmin;
+  color: var(--dim);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* --- Core's own parts, restyled ---------------------------------------------------- */
+/* The loading indicator is core's. It is a ring in the middle of the screen; this gives
+   it the accent color and nothing else. */
+
+.vpinfe-launch-spinner {
+  border-top-color: var(--accent);
 }

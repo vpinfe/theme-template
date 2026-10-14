@@ -1,10 +1,11 @@
 {
   "name": "Template",
-  "version": "1.6",
+  "version": "2.0.0",
   "author": "superhac",
-  "description": "A template theme demonstrating all VPinFE theme patterns.",
+  "description": "A small starting point for a VPinFE 3.0 theme: a list, a selection and the table's art, with everything else left to core.",
   "preview_image": "preview.png",
-  "supported_screens": 3,
-  "type": "desktop",
-  "change_log": "Support for bg and dmd video"
+  "type": "both",
+  "change_log": "Rebuilt for VPinFE 3.0: core now handles input, audio, preloading, layout, the loading indicator, attract mode and the backglass and score view pages. Options are declared in options.json.",
+  "min_vpinfe": "3.0",
+  "windows": ["playfield"]
 }

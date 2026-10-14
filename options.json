@@ -1,0 +1,23 @@
+{
+  "title": "Template Options",
+  "description": "Two options, to show how a theme declares what a person can change.",
+  "options": [
+    {
+      "key": "rows",
+      "name": "Rows",
+      "description": "How many tables the list shows at once.",
+      "type": "number",
+      "default": 7,
+      "min": 3,
+      "max": 13,
+      "step": 2
+    },
+    {
+      "key": "showDetails",
+      "name": "Show Details",
+      "description": "Show the manufacturer, year and authors under the table's name.",
+      "type": "boolean",
+      "default": true
+    }
+  ]
+}
