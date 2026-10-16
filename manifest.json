@@ -3,8 +3,7 @@
   "version": "2.0.0",
   "author": "superhac",
   "description": "A small starting point for a VPinFE 3.0 theme: a list, a selection and the table's art, with everything else left to core.",
-  "preview_image": "preview.png",
-  "type": "both",
+  "layouts": {"desktop": "preview.png", "cab": "preview-cabinet.png"},
   "change_log": "Rebuilt for VPinFE 3.0.\n\nCore now handles input, audio, preloading, layout, the loading indicator, attract mode and the backglass and score view pages. The art behind the page is the video or picture that Playfield Media Priority in VPinFE's settings asks for.\n\nThe rows and details settings are listed with the theme in the Console.",
   "min_vpinfe": "3.0",
   "windows": ["playfield"]
